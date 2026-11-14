@@ -6,9 +6,8 @@
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <style>
-:root{--bg:#2f3f51;--panel:#032242;--border:#415f7a;--text:#eaf2fb;--muted:#a4b9cc;--red:#fa565b;--gold:#ffbf47;--blue:#65cce5}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,Arial,sans-serif}header{padding:22px 25px;background:linear-gradient(100deg,#091b2d,#183550);border-bottom:1px solid var(--border)}h1{font:700 clamp(25px,3vw,39px) Georgia,serif;margin:0}header p{color:var(--muted);margin:6px 0 0}.demo{background:#6b3c19;color:#fff0d4;padding:10px 24px;font-weight:650;font-size:13px}.tabs{display:flex;gap:7px;flex-wrap:wrap;padding:12px 22px;background:#0c1d30}.tabs button,.action,select,input,textarea{font:inherit}.tabs button{color:#d5e4f0;background:transparent;border:1px solid transparent;padding:10px 14px;border-radius:7px;cursor:pointer}.tabs button.active,.tabs button:hover{background:#1a354e;border-color:#45627c}.wrap{padding:18px;max-width:1700px;margin:auto}.grid{display:grid;grid-template-columns:minmax(245px,1fr) minmax(380px,2.5fr) minmax(245px,1.1fr);gap:14px}.panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:17px;min-width:0}.panel h2{font-size:18px;margin:0 0 13px}.metric{font-size:38px;font-weight:800;color:var(--red)}.muted{color:var(--muted);font-size:13px}.split{display:flex;gap:15px;justify-content:space-between;border-top:1px solid var(--border);margin-top:14px;padding-top:14px}.split strong{font-size:24px}.split span{display:block;color:var(--muted);font-size:12px}.cdc{margin-top:14px}.cdc .number{font-size:25px;font-weight:750;color:var(--blue)}.cdc-line{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--border)}.cdc-line:last-child{border:0}.outcomeFilters{margin-bottom:12px;padding:12px 15px}.outcomeFilters h2{margin:0 0 7px;font-size:16px}.outcomeOptions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.outcomeOptions label{display:flex;align-items:center;gap:7px;margin:0;font-size:13px;color:var(--muted);font-weight:500}.outcomeOptions input{width:auto;margin:0;accent-color:var(--red)}.outcomeStatus{font-size:12px;color:var(--muted);margin:7px 0 0}.layerPanel{margin-bottom:12px;padding:12px 15px}.layerPanel h2{margin:0 0 8px;font-size:16px}.layerControls{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap}.layerControls label{display:flex;align-items:center;gap:7px;margin:0;font-size:13px;font-weight:500}.layerControls .layerToggle{color:var(--text)}.layerControls input{width:auto;margin:0;accent-color:var(--blue)}.layerControls select{width:auto;min-width:155px;margin:0;padding:7px 9px;font-size:13px}.layerControls .muted{font-size:12px}.layerHelp{flex-basis:100%;margin:0}.mapPanel{padding:0;overflow:hidden;position:relative;min-height:530px}#map{height:530px;background:#142c40}.mapnote{position:absolute;bottom:9px;left:10px;right:10px;z-index:2;background:#0b2034e8;padding:8px;border-radius:6px;font-size:12px}.redbtn{background:#c8323e;color:white;border:0;padding:17px;border-radius:10px;font-weight:750;cursor:pointer;width:100%;font-size:16px}.right .panel{margin-top:14px}.right .panel:first-child{margin-top:0}.report{padding:11px 0;border-bottom:1px solid var(--border)}.report strong{display:block}.report small{color:var(--muted)}.bottom{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;margin-top:14px}.chartBox{height:245px}.section{display:none}.section.active{display:block}.full{max-width:1000px;margin:0 auto}.note{background:#19344b;border-left:4px solid var(--blue);padding:12px;margin:12px 0;border-radius:5px}table{border-collapse:collapse;width:100%;margin:12px 0}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--border)}input,select,textarea{width:100%;padding:10px;margin:5px 0 13px;background:#07192a;border:1px solid #52697e;color:white;border-radius:6px}label{display:block;font-weight:600}textarea{min-height:90px}.action{padding:12px 16px;background:#d43e4b;border:0;color:white;border-radius:8px;cursor:pointer}.source a{color:#7cddf0}.foot{margin:24px 0;color:var(--muted);font-size:12px}.maplibregl-popup-content{color:#162231} @media(max-width:1100px){.grid{grid-template-columns:1fr 2fr}.right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px}.right .panel{margin-top:0}.bottom{grid-template-columns:1fr 1fr}}@media(max-width:680px){.grid,.bottom,.right{display:block}.panel,.right .panel{margin:0 0 13px}.mapPanel{margin-bottom:13px}#map{height:490px}}
+:root{--bg:#2f3f51;--panel:#032242;--border:#415f7a;--text:#eaf2fb;--muted:#a4b9cc;--red:#fa565b;--gold:#ffbf47;--blue:#65cce5}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,Arial,sans-serif}header{padding:22px 25px;background:linear-gradient(100deg,#091b2d,#183550);border-bottom:1px solid var(--border)}h1{font:700 clamp(25px,3vw,39px) Georgia,serif;margin:0}header p{color:var(--muted);margin:6px 0 0}.demo{background:#6b3c19;color:#fff0d4;padding:10px 24px;font-weight:650;font-size:13px}.tabs{display:flex;gap:7px;flex-wrap:wrap;padding:12px 22px;background:#0c1d30}.tabs button,.action,select,input,textarea{font:inherit}.tabs button{color:#d5e4f0;background:transparent;border:1px solid transparent;padding:10px 14px;border-radius:7px;cursor:pointer}.tabs button.active,.tabs button:hover{background:#1a354e;border-color:#45627c}.wrap{padding:18px;max-width:1700px;margin:auto}.grid{display:grid;grid-template-columns:minmax(245px,1fr) minmax(380px,2.5fr) minmax(245px,1.1fr);gap:14px}.panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:17px;min-width:0}.panel h2{font-size:18px;margin:0 0 13px}.metric{font-size:38px;font-weight:800;color:var(--red)}.muted{color:var(--muted);font-size:13px}.split{display:flex;gap:15px;justify-content:space-between;border-top:1px solid var(--border);margin-top:14px;padding-top:14px}.split strong{font-size:24px}.split span{display:block;color:var(--muted);font-size:12px}.cdc{margin-top:14px}.cdc .number{font-size:25px;font-weight:750;color:var(--blue)}.cdc-line{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--border)}.cdc-line:last-child{border:0}.outcomeFilters{margin-bottom:12px;padding:12px 15px}.outcomeFilters h2{margin:0 0 7px;font-size:16px}.outcomeOptions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.outcomeOptions label{display:flex;align-items:center;gap:7px;margin:0;font-size:13px;color:var(--muted);font-weight:500}.outcomeOptions input{width:auto;margin:0;accent-color:var(--red)}.outcomeStatus{font-size:12px;color:var(--muted);margin:7px 0 0}.layerPanel{margin-bottom:12px;padding:12px 15px}.layerPanel h2{margin:0 0 8px;font-size:16px}.layerControls{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap}.layerControls label{display:flex;align-items:center;gap:7px;margin:0;font-size:13px;font-weight:500}.layerControls .layerToggle{color:var(--text)}.layerControls input{width:auto;margin:0;accent-color:var(--blue)}.layerControls select{width:auto;min-width:155px;margin:0;padding:7px 9px;font-size:13px}.layerControls .muted{font-size:12px}.layerHelp{flex-basis:100%;margin:0}.cdcLegend{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;padding-top:9px;border-top:1px solid var(--border);margin-top:8px}.legendItem{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:11px}.legendSwatch{width:15px;height:12px;border:1px solid #ffffff55;border-radius:2px;display:inline-block}.legendNote{flex-basis:100%;font-size:11px;color:var(--muted)}.mapPanel{padding:0;overflow:hidden;position:relative;min-height:530px}#map{height:530px;background:#142c40}.mapnote{position:absolute;bottom:9px;left:10px;right:10px;z-index:2;background:#0b2034e8;padding:8px;border-radius:6px;font-size:12px}.redbtn{background:#c8323e;color:white;border:0;padding:17px;border-radius:10px;font-weight:750;cursor:pointer;width:100%;font-size:16px}.right .panel{margin-top:14px}.right .panel:first-child{margin-top:0}.report{padding:11px 0;border-bottom:1px solid var(--border)}.report strong{display:block}.report small{color:var(--muted)}.bottom{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;margin-top:14px}.chartBox{height:245px}.section{display:none}.section.active{display:block}.full{max-width:1000px;margin:0 auto}.note{background:#19344b;border-left:4px solid var(--blue);padding:12px;margin:12px 0;border-radius:5px}table{border-collapse:collapse;width:100%;margin:12px 0}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--border)}input,select,textarea{width:100%;padding:10px;margin:5px 0 13px;background:#07192a;border:1px solid #52697e;color:white;border-radius:6px}label{display:block;font-weight:600}textarea{min-height:90px}.action{padding:12px 16px;background:#d43e4b;border:0;color:white;border-radius:8px;cursor:pointer}.source a{color:#7cddf0}.foot{margin:24px 0;color:var(--muted);font-size:12px}.maplibregl-popup-content{color:#162231} @media(max-width:1100px){.grid{grid-template-columns:1fr 2fr}.right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px}.right .panel{margin-top:0}.bottom{grid-template-columns:1fr 1fr}}@media(max-width:680px){.grid,.bottom,.right{display:block}.panel,.right .panel{margin:0 0 13px}.mapPanel{margin-bottom:13px}#map{height:490px}}
 </style>
 </head>
 <body>
@@ -50,7 +49,7 @@
         <div class="panel layerPanel" aria-label="Map layer controls">
           <h2>Map layers</h2>
           <div class="layerControls">
-            <label class="layerToggle"><input type="checkbox" id="showCDC"> <span>🟦 CDC County Statistics</span></label>
+            <label class="layerToggle"><input type="checkbox" id="showCDC" checked> <span>🟦 CDC County Statistics</span></label>
             <label for="cdcMetric" class="muted">CDC measure</label>
             <select id="cdcMetric">
               <option value="FA_Deaths">Firearm deaths</option>
@@ -64,12 +63,14 @@
               <option value="2020">2020 annual</option><option value="2019">2019 annual</option>
               <option value="TTM">Latest trailing 12 months</option>
             </select>
-            <p class="muted layerHelp">Turn on the county layer, then click Davidson County to inspect the selected CDC measure.</p>
+            <p class="muted layerHelp">The map shades all 95 Tennessee counties by the selected CDC death rate per 100,000 residents. Davidson County is outlined. Click any county for its count, rate, and modeling details.</p>
+            <div id="cdcLegend" class="cdcLegend" aria-live="polite"><span class="muted">Legend will appear when county data load.</span></div>
           </div>
         </div>
         <div class="panel mapPanel">
-          <div id="map" aria-label="Map of Davidson County, Tennessee"></div>
-          <div class="mapnote">This map displays a county boundary only. The CDC dataset contains county-level statistics, not individual shooting locations.</div>
+          <div id="map" aria-label="CDC county-level choropleth map of Tennessee"></div>
+          <p id="mapLoadStatus" class="muted" role="status" style="margin:8px 12px 34px">Preparing map…</p>
+          <div class="mapnote">County-level choropleth: each polygon represents a Tennessee county. Fill color represents CDC deaths per 100,000 residents—not individual shooting locations. Davidson County is outlined.</div>
         </div>
       </div>
       <div class="right">
@@ -84,7 +85,7 @@
       </div>
     </div>
     <div class="bottom">
-      <div class="panel"><h2>CDC Firearm Deaths by Year</h2><div class="chartBox"><canvas id="cdcChart"></canvas></div><p class="muted">Annual Davidson County counts from the supplied CDC CSV. Suppressed or unavailable values are not converted to zero.</p></div>
+      <div class="panel"><h2>CDC Firearm Deaths by Year</h2><div class="chartBox"><canvas id="cdcChart"></canvas></div><p class="muted">Annual Davidson County counts from the supplied CDC CSV. Counts suppressed as “1–9” remain suppressed and are not converted to zero.</p></div>
       <div class="panel"><h2>Incident trends</h2><p class="muted">Not displayed. No verified incident-level dataset is connected.</p></div>
       <div class="panel"><h2>Demographic breakdown</h2><p class="muted">Not displayed. No individual-level demographic dataset is connected.</p></div>
     </div>
@@ -126,106 +127,233 @@
 
   <section id="about" class="section"><div class="full panel source"><h2>Methodology and Ethics</h2>
     <p><strong>Currently connected source:</strong> CDC county-level mortality CSV supplied with this project. Davidson County is identified by GEOID 47037.</p>
-    <p><strong>Geographic boundary:</strong> U.S. Census Bureau TIGERweb county boundary service.</p>
+    <p><strong>Geographic boundary:</strong> U.S. Census Bureau TIGERweb county boundary service. The Explore Map joins CDC county records to all 95 Tennessee county polygons using five-digit county GEOID/FIPS codes.</p>
     <p><strong>Incident-level data:</strong> No incident-level source is currently connected. No incident locations, fatal/nonfatal counts, demographic summaries, or example news reports are invented or displayed.</p>
-    <p><strong>Interpretation:</strong> County mortality statistics cannot be interpreted as hospital-level outcomes or a complete record of nonfatal injuries. Suppressed CDC values are preserved rather than converted to zero.</p>
+    <p><strong>Map interpretation:</strong> County polygons are shaded by the CDC death rate per 100,000 residents, not by individual incident locations. Quantile classes are recalculated for the selected measure and period. Davidson County is outlined in gold. Counties without a usable rate are shown in gray.</p>
+    <p><strong>Interpretation:</strong> County mortality statistics are based on county of residence and cannot be interpreted as hospital-level outcomes or a complete record of nonfatal injuries. Counts of 1–9 remain suppressed. CDC uses Bayesian modeled rates for areas with 1–9 deaths; the popup identifies modeled rates and shows a credible interval when supplied.</p>
     <p><strong>Reference resources:</strong> <a href="https://data.cdc.gov/Injury-Violence/Mapping-Injury-Overdose-and-Violence-County/psx4-wq38" target="_blank" rel="noopener">CDC county dataset</a> · <a href="https://wonder.cdc.gov/" target="_blank" rel="noopener">CDC WONDER</a> · <a href="https://wisqars.cdc.gov/" target="_blank" rel="noopener">CDC WISQARS</a> · <a href="https://maplibre.org/maplibre-gl-js/docs/" target="_blank" rel="noopener">MapLibre GL JS</a> · <a href="https://www.chartjs.org/docs/latest/" target="_blank" rel="noopener">Chart.js</a>.</p>
   </div></section>
-  <p class="foot">The CDC county CSV is loaded locally from <code>Data/CDC_DATA.csv</code>. Requires internet for the map background, Census county boundary, and chart libraries. No database or live incident feed is connected.</p>
+  <p class="foot">The CDC county CSV is loaded locally from <code>Data/CDC_DATA.csv</code>. Requires internet for the map background, Census TIGERweb county boundaries, and chart libraries. No database or live incident feed is connected.</p>
 </main>
 <script>
 // This application intentionally contains no fabricated incident records or incident-level charts.
-// The only populated statistics below come from the supplied CDC county CSV.
+// The CDC CSV is county-level mortality data. It is joined to Tennessee county polygons by five-digit GEOID.
+// The map uses CDC Rate (deaths per 100,000 residents) for polygon shading; counts remain in the popup.
 const CDC_CSV_PATH='Data/CDC_DATA.csv';
+const TENNESSEE_STATE_FIPS='47';
 const DAVIDSON_GEOID='47037';
-const CENSUS_DAVIDSON_URL="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query?where=GEOID%3D%2747037%27&outFields=GEOID%2CNAME&returnGeometry=true&outSR=4326&f=geojson";
+const CENSUS_TENNESSEE_URL="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query?where=STATE%3D%2747%27&outFields=GEOID%2CNAME%2CSTATE&returnGeometry=true&outSR=4326&f=geojson";
 let cdcRows=[];
-let cdcCountyFeature=null;
+let tennesseeCountyFeatures=[];
 let cdcChartInstance=null;
-
-const map=new maplibregl.Map({container:'map',style:'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',center:[-86.782,36.168],zoom:9.5});
-map.addControl(new maplibregl.NavigationControl(),'bottom-right');
+let map=null;
+let currentLegendColors=[];
 
 function setCDCStatus(message){document.getElementById('cdcLoadStatus').textContent=message;}
-function findCDCRecord(intent,period){
-  return cdcRows.find(row=>String(row.GEOID).padStart(5,'0')===DAVIDSON_GEOID && row.Intent===intent && String(row.Period)===String(period));
+function setMapStatus(message){const el=document.getElementById('mapLoadStatus');if(el)el.textContent=message;}
+
+// Parse CSV while respecting quoted commas and line breaks (including CDC's TTM date-range field).
+function parseCSV(text){
+  const rows=[];let row=[];let field='';let quoted=false;
+  for(let i=0;i<text.length;i++){
+    const ch=text[i];
+    if(quoted){
+      if(ch==='"'&&text[i+1]==='"'){field+='"';i++;}
+      else if(ch==='"'){quoted=false;}
+      else{field+=ch;}
+    }else{
+      if(ch==='"'){quoted=true;}
+      else if(ch===','){row.push(field);field='';}
+      else if(ch==='\n'){row.push(field);rows.push(row);row=[];field='';}
+      else if(ch==='\r'){}
+      else{field+=ch;}
+    }
+  }
+  if(field.length||row.length){row.push(field);rows.push(row);}
+  if(!rows.length)return [];
+  const headers=rows.shift().map(h=>h.trim().replace(/^\uFEFF/,''));
+  return rows.filter(r=>r.some(v=>String(v).trim()!=='' )).map(r=>{const obj={};headers.forEach((h,i)=>obj[h]=r[i]??'');return obj;});
 }
+function normalizeGEOID(value){return String(value??'').trim().padStart(5,'0');}
+function findCDCRecord(geoid,intent,period){
+  const id=normalizeGEOID(geoid);
+  return cdcRows.find(row=>normalizeGEOID(row.GEOID)===id&&row.Intent===intent&&String(row.Period)===String(period));
+}
+function findDavidsonRecord(intent,period){return findCDCRecord(DAVIDSON_GEOID,intent,period);}
 function formatCDCValue(value){
-  if(value===undefined || value===null || String(value).trim()==='' || String(value)==='-999') return 'Not available';
+  if(value===undefined||value===null||String(value).trim()===''||String(value)==='-999')return 'Not available';
   return String(value);
 }
-function getCDCFeatureProperties(){return findCDCRecord(document.getElementById('cdcMetric').value,document.getElementById('cdcPeriod').value);}
-function refreshCDCFeature(){
-  if(!map.getSource('cdc-county')) return;
-  const record=getCDCFeatureProperties();
-  const features=cdcCountyFeature?[{type:'Feature',geometry:cdcCountyFeature.geometry,properties:{
-    GEOID:DAVIDSON_GEOID,NAME:'Davidson County',Intent:record?.Intent||'',Period:record?.Period||'',Count:record?.Count||'',
-    Rate:record?.Rate||'',Rate_M:record?.Rate_M||'',Rate_M_CI:record?.Rate_M_CI||'',Data_As_Of:record?.Data_As_Of||'',TTM_Date_Range:record?.TTM_Date_Range||''
-  }}]:[];
-  map.getSource('cdc-county').setData({type:'FeatureCollection',features});
+function numericOrNull(value){
+  const s=String(value??'').trim();
+  if(!/^\d+(\.\d+)?$/.test(s))return null;
+  const n=Number(s);
+  return n===-999?null:n;
+}
+function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function selectedIntent(){return document.getElementById('cdcMetric').value;}
+function selectedPeriod(){return document.getElementById('cdcPeriod').value;}
+function selectedMetricLabel(){return ({FA_Deaths:'Firearm deaths',FA_Homicide:'Firearm homicides',FA_Suicide:'Firearm suicides'})[selectedIntent()]||'Firearm deaths';}
+function periodLabel(record){
+  if(selectedPeriod()==='TTM')return 'Trailing 12 months ('+formatCDCValue(record?.TTM_Date_Range)+')';
+  return 'Calendar year '+selectedPeriod();
+}
+
+// Derive five quantile classes from valid Tennessee rates for the selected measure and period.
+// Counties with suppressed/unavailable rates are assigned the neutral no-data color.
+function getRateBreaks(features){
+  const values=features.map(f=>f.properties.RateNum).filter(v=>typeof v==='number'&&Number.isFinite(v)).sort((a,b)=>a-b);
+  if(!values.length)return [];
+  const quantile=p=>{
+    const pos=(values.length-1)*p,lo=Math.floor(pos),hi=Math.ceil(pos);
+    return values[lo]+(values[hi]-values[lo])*(pos-lo);
+  };
+  return [0.2,0.4,0.6,0.8].map(quantile).filter((v,i,a)=>i===0||v>a[i-1]);
+}
+function makeRateColorExpression(breaks){
+  const palette=['#e8f3f7','#b8dce8','#78bfd5','#328eae','#15506f'];
+  const expression=['step',['get','RateNum'],palette[0]];
+  breaks.forEach((value,index)=>{expression.push(value,palette[Math.min(index+1,palette.length-1)]);});
+  return ['case',['==',['get','RateNum'],null],'#586675',expression];
+}
+function updateCDCMap(){
+  if(!map||!map.getSource('tn-cdc-counties')||!tennesseeCountyFeatures.length)return;
+  const intent=selectedIntent(),period=selectedPeriod();
+  const features=tennesseeCountyFeatures.map(boundary=>{
+    const id=normalizeGEOID(boundary.properties.GEOID);
+    const record=findCDCRecord(id,intent,period);
+    const rate=numericOrNull(record?.Rate);
+    return {type:'Feature',id,geometry:boundary.geometry,properties:{
+      GEOID:id,NAME:boundary.properties.NAME||boundary.properties.BASENAME||'County',
+      Intent:record?.Intent||intent,Period:record?.Period||period,
+      Count:record?.Count??'',Rate:record?.Rate??'',RateNum:rate,
+      Rate_M:record?.Rate_M??'',Rate_M_CI:record?.Rate_M_CI??'',
+      Data_As_Of:record?.Data_As_Of??'',TTM_Date_Range:record?.TTM_Date_Range??''
+    }};
+  });
+  const collection={type:'FeatureCollection',features};
+  map.getSource('tn-cdc-counties').setData(collection);
+  const breaks=getRateBreaks(features);
+  if(map.getLayer('tn-cdc-fill'))map.setPaintProperty('tn-cdc-fill','fill-color',makeRateColorExpression(breaks));
+  renderCDCMapLegend(breaks,features);
+  const davidson=findCDCRecord(DAVIDSON_GEOID,intent,period);
+  const countiesWithRates=features.filter(f=>f.properties.RateNum!==null).length;
+  setMapStatus('Tennessee county layer loaded: '+features.length+' counties; '+countiesWithRates+' have a reportable CDC rate for this selection. '+(davidson?'Davidson County data are available.':'Davidson County has no record for this selection.')+' Click any county for details.');
+}
+function renderCDCMapLegend(breaks,features){
+  const el=document.getElementById('cdcLegend');if(!el)return;
+  const palette=['#e8f3f7','#b8dce8','#78bfd5','#328eae','#15506f'];
+  const colors=palette.slice(0,breaks.length+1);
+  const labels=[];
+  if(!breaks.length){el.innerHTML='<span class="muted">No numeric CDC rates are available for this selection.</span>';return;}
+  labels.push('≤ '+breaks[0].toFixed(1));
+  for(let i=1;i<breaks.length;i++)labels.push(breaks[i-1].toFixed(1)+'–'+breaks[i].toFixed(1));
+  labels.push('> '+breaks[breaks.length-1].toFixed(1));
+  el.innerHTML=colors.map((color,i)=>'<span class="legendItem"><i class="legendSwatch" style="background:'+color+'"></i>'+labels[i]+'</span>').join('')+
+    '<span class="legendItem"><i class="legendSwatch" style="background:#586675"></i>No rate</span>'+
+    '<span class="legendNote">Rate per 100,000 residents. Class breaks are recalculated for the selected Tennessee counties, measure, and period.</span>';
 }
 function showCDCPopup(feature,lngLat){
-  const p=feature.properties;
-  const periodLabel=p.Period==='TTM'?'Trailing 12 months ('+formatCDCValue(p.TTM_Date_Range)+')':'Calendar year '+formatCDCValue(p.Period);
-  const metricNames={FA_Deaths:'Firearm deaths',FA_Homicide:'Firearm homicides',FA_Suicide:'Firearm suicides'};
-  const html='<strong>Davidson County, Tennessee</strong><br><b>'+metricNames[p.Intent]+'</b><br>Period: '+periodLabel+
-    '<br>Count: '+formatCDCValue(p.Count)+'<br>Rate per 100,000: '+formatCDCValue(p.Rate)+
-    (p.Rate_M_CI&&p.Rate_M_CI!=='-999'?'<br>Rate confidence interval: '+formatCDCValue(p.Rate_M_CI):'')+
-    '<br>CDC data as of: '+formatCDCValue(p.Data_As_Of)+'<hr><small>Source: CDC county dataset. County-level statistic, not an individual incident location.</small>';
+  const p=feature.properties||{};
+  const county=escapeHTML(String(p.NAME||'County').replace(/ County$/,''));
+  const isModeled=String(p.Rate_M)==='1';
+  const modelLine=isModeled?'<br><b>Rate method:</b> Modeled by CDC (Bayesian)':'<br><b>Rate method:</b> Not flagged as modeled';
+  const ci=(p.Rate_M_CI&&p.Rate_M_CI!=='-999')?'<br><b>95% credible interval:</b> '+escapeHTML(p.Rate_M_CI):'';
+  const rate=p.RateNum===null?'Not available':Number(p.RateNum).toFixed(1);
+  const count=escapeHTML(formatCDCValue(p.Count));
+  const period=selectedPeriod()==='TTM'?'Trailing 12 months ('+escapeHTML(formatCDCValue(p.TTM_Date_Range))+')':'Calendar year '+escapeHTML(selectedPeriod());
+  const html='<strong>'+county+' County, Tennessee</strong><br><b>'+escapeHTML(selectedMetricLabel())+'</b><br><b>Period:</b> '+period+
+    '<br><b>Deaths:</b> '+count+'<br><b>Rate per 100,000:</b> '+rate+modelLine+ci+
+    '<br><b>CDC data as of:</b> '+escapeHTML(formatCDCValue(p.Data_As_Of))+
+    '<hr><small>Source: CDC county dataset. County of residence, not necessarily location of death. CDC suppresses counts below 10 as “1–9.”</small>';
   new maplibregl.Popup().setLngLat(lngLat).setHTML(html).addTo(map);
 }
-function updateCDCLayerVisibility(){
-  const visible=document.getElementById('showCDC').checked;
-  ['cdc-county-fill','cdc-county-outline'].forEach(id=>{if(map.getLayer(id))map.setLayoutProperty(id,'visibility',visible?'visible':'none');});
+function updateCDCVisibility(){
+  if(!map)return;
+  const visible=document.getElementById('showCDC').checked?'visible':'none';
+  ['tn-cdc-fill','tn-cdc-outline','tn-davidson-outline'].forEach(id=>{if(map.getLayer(id))map.setLayoutProperty(id,'visibility',visible);});
 }
-function numericOrNull(value){return /^\\d+(\\.\\d+)?$/.test(String(value??'').trim())?Number(value):null;}
 function updateCDCTrendChart(){
   if(!cdcChartInstance)return;
   const years=['2019','2020','2021','2022','2023','2024'];
   cdcChartInstance.data.labels=years;
-  cdcChartInstance.data.datasets[0].data=years.map(year=>{const row=findCDCRecord('FA_Deaths',year);return row?numericOrNull(row.Count):null;});
+  cdcChartInstance.data.datasets[0].data=years.map(year=>{const row=findDavidsonRecord('FA_Deaths',year);return row?numericOrNull(row.Count):null;});
   cdcChartInstance.update();
 }
 function populateCDCTable(){
-  const tbody=document.querySelector('#cdcDataTable tbody');
+  const tbody=document.querySelector('#cdcDataTable tbody');if(!tbody)return;
   const measures=[['FA_Deaths','Firearm deaths'],['FA_Homicide','Firearm homicides'],['FA_Suicide','Firearm suicides']];
-  const periods=['2019','2020','2021','2022','2023','2024','TTM'];
-  const rows=[];
-  measures.forEach(([intent,label])=>periods.forEach(period=>{const r=findCDCRecord(intent,period);if(r)rows.push({label,period,count:formatCDCValue(r.Count),rate:formatCDCValue(r.Rate),asof:formatCDCValue(r.Data_As_Of)});}));
-  tbody.innerHTML=rows.map(r=>'<tr><td>'+r.label+'</td><td>'+r.period+'</td><td>'+r.count+'</td><td>'+r.rate+'</td><td>'+r.asof+'</td></tr>').join('');
+  const periods=['2019','2020','2021','2022','2023','2024','TTM'];const rows=[];
+  measures.forEach(([intent,label])=>periods.forEach(period=>{const r=findDavidsonRecord(intent,period);if(r)rows.push({label,period,count:formatCDCValue(r.Count),rate:formatCDCValue(r.Rate),asof:formatCDCValue(r.Data_As_Of)});}));
+  tbody.innerHTML=rows.map(r=>'<tr><td>'+escapeHTML(r.label)+'</td><td>'+escapeHTML(r.period)+'</td><td>'+escapeHTML(r.count)+'</td><td>'+escapeHTML(r.rate)+'</td><td>'+escapeHTML(r.asof)+'</td></tr>').join('');
   document.getElementById('cdcTableStatus').textContent=rows.length?rows.length+' Davidson County records loaded from the supplied CSV.':'No matching Davidson County records found for the selected measures and periods.';
 }
-function loadCDCFile(){
-  Papa.parse(CDC_CSV_PATH,{download:true,header:true,skipEmptyLines:true,complete:results=>{
-    cdcRows=results.data;
-    const hasDavidson=cdcRows.some(row=>String(row.GEOID).padStart(5,'0')===DAVIDSON_GEOID);
-    if(!hasDavidson){setCDCStatus('CSV loaded, but no Davidson County (GEOID 47037) records were found.');return;}
-    setCDCStatus('CDC county data loaded from '+CDC_CSV_PATH+'. Toggle the county layer on to inspect it.');
-    refreshCDCFeature();updateCDCTrendChart();populateCDCTable();
-  },error:function(error){setCDCStatus('Could not load '+CDC_CSV_PATH+'. Confirm the CSV is in the Data folder beside index.html. '+error.message);document.getElementById('cdcTableStatus').textContent='CDC CSV could not be loaded.';}});
+async function loadCDCFile(){
+  try{
+    const response=await fetch(CDC_CSV_PATH);
+    if(!response.ok)throw new Error('HTTP '+response.status+' while requesting '+CDC_CSV_PATH);
+    cdcRows=parseCSV(await response.text());
+    const tnRows=cdcRows.filter(row=>String(row.ST_GEOID).padStart(2,'0')===TENNESSEE_STATE_FIPS);
+    if(!tnRows.length)throw new Error('No Tennessee rows (state FIPS 47) were found in the CSV.');
+    setCDCStatus('CDC CSV loaded: '+tnRows.length+' Tennessee county-measure-period records. The map uses the CDC rate per 100,000 residents.');
+    updateCDCTrendChart();populateCDCTable();updateCDCMap();
+  }catch(error){
+    const localFileHint=location.protocol==='file:'?' Browsers often block local CSV requests when the HTML is opened by double-clicking. Run the folder through a local web server (for example, python -m http.server 8000) and open http://localhost:8000.':'';
+    setCDCStatus('CDC CSV did not load: '+error.message+'. Check that Data/CDC_DATA.csv is beside index.html.'+localFileHint);
+    const tableStatus=document.getElementById('cdcTableStatus');if(tableStatus)tableStatus.textContent='CDC CSV could not be loaded.';
+  }
 }
-function loadDavidsonBoundary(){
-  fetch(CENSUS_DAVIDSON_URL).then(response=>{if(!response.ok)throw new Error('Census boundary request returned HTTP '+response.status);return response.json();})
-    .then(geojson=>{
-      if(!geojson.features||!geojson.features.length)throw new Error('Davidson County boundary was not returned.');
-      cdcCountyFeature=geojson.features[0];
-      map.addSource('cdc-county',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
-      map.addLayer({id:'cdc-county-fill',type:'fill',source:'cdc-county',paint:{'fill-color':'#65cce5','fill-opacity':0.16}});
-      map.addLayer({id:'cdc-county-outline',type:'line',source:'cdc-county',paint:{'line-color':'#65cce5','line-width':2.5,'line-dasharray':[2,1]}});
-      refreshCDCFeature();updateCDCLayerVisibility();
-      map.on('click','cdc-county-fill',event=>{const feature=event.features&&event.features[0];if(feature)showCDCPopup(feature,event.lngLat);});
-      map.on('mouseenter','cdc-county-fill',()=>map.getCanvas().style.cursor='pointer');
-      map.on('mouseleave','cdc-county-fill',()=>map.getCanvas().style.cursor='');
-    }).catch(error=>setCDCStatus('CDC boundary could not be loaded: '+error.message));
+function fitToTennessee(features){
+  const bounds=new maplibregl.LngLatBounds();
+  function walk(coords){if(!Array.isArray(coords))return;if(coords.length>=2&&typeof coords[0]==='number'&&typeof coords[1]==='number'){bounds.extend([coords[0],coords[1]]);return;}coords.forEach(walk);}
+  features.forEach(feature=>walk(feature.geometry.coordinates));
+  if(!bounds.isEmpty())map.fitBounds(bounds,{padding:{top:35,bottom:45,left:35,right:35},duration:650,maxZoom:7.2});
 }
-map.on('load',()=>{loadCDCFile();loadDavidsonBoundary();});
-document.getElementById('showCDC').addEventListener('change',updateCDCLayerVisibility);
-document.getElementById('cdcMetric').addEventListener('change',refreshCDCFeature);
-document.getElementById('cdcPeriod').addEventListener('change',refreshCDCFeature);
-function showTab(tab){document.querySelectorAll('.section').forEach(el=>el.classList.toggle('active',el.id===tab));document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===tab));if(tab==='explore')setTimeout(()=>map.resize(),40);}
+async function loadTennesseeBoundaries(){
+  try{
+    setMapStatus('Basemap loaded. Retrieving all 95 Tennessee county boundaries from Census TIGERweb…');
+    const response=await fetch(CENSUS_TENNESSEE_URL);
+    if(!response.ok)throw new Error('Census boundary request returned HTTP '+response.status);
+    const geojson=await response.json();
+    if(!geojson.features||geojson.features.length!==95)throw new Error('Expected 95 Tennessee counties, but Census TIGERweb returned '+(geojson.features?.length||0)+'.');
+    tennesseeCountyFeatures=geojson.features;
+    if(!map.getSource('tn-cdc-counties'))map.addSource('tn-cdc-counties',{type:'geojson',data:{type:'FeatureCollection',features:[]} });
+    map.addLayer({id:'tn-cdc-fill',type:'fill',source:'tn-cdc-counties',paint:{'fill-color':'#586675','fill-opacity':0.82,'fill-outline-color':'#24394a'}});
+    map.addLayer({id:'tn-cdc-outline',type:'line',source:'tn-cdc-counties',paint:{'line-color':'#b9d0df','line-width':0.8,'line-opacity':0.85}});
+    // Davidson County is outlined separately so it remains easy to identify in the statewide view.
+    map.addLayer({id:'tn-davidson-outline',type:'line',source:'tn-cdc-counties',filter:['==',['get','GEOID'],DAVIDSON_GEOID],paint:{'line-color':'#ffd166','line-width':3.2,'line-opacity':1}});
+    map.on('click','tn-cdc-fill',event=>{const feature=event.features&&event.features[0];if(feature)showCDCPopup(feature,event.lngLat);});
+    map.on('mouseenter','tn-cdc-fill',()=>map.getCanvas().style.cursor='pointer');
+    map.on('mouseleave','tn-cdc-fill',()=>map.getCanvas().style.cursor='');
+    updateCDCMap();updateCDCVisibility();fitToTennessee(tennesseeCountyFeatures);
+    if(!cdcRows.length)setMapStatus('Tennessee county boundaries loaded. Waiting for the CDC CSV to finish loading…');
+  }catch(error){setMapStatus('The basemap may be visible, but Tennessee county boundaries did not load: '+error.message+'. Check your internet connection or browser network restrictions.');}
+}
+
+// Load CDC rows independently from the map, then join them when county boundaries are ready.
+loadCDCFile();
+if(typeof maplibregl==='undefined'){
+  setMapStatus('MapLibre could not load. Check internet access or whether the map library CDN is blocked.');
+  document.getElementById('map').innerHTML='<div style="padding:24px;color:#eaf2fb">The map library did not load. Please check your internet connection and refresh.</div>';
+}else{
+  try{
+    map=new maplibregl.Map({container:'map',style:'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',center:[-86.2,35.8],zoom:6.2,trackResize:true});
+    map.addControl(new maplibregl.NavigationControl(),'bottom-right');
+    map.on('load',()=>{setMapStatus('Basemap loaded. Loading Tennessee county boundaries…');loadTennesseeBoundaries();});
+    map.on('error',event=>{const message=event&&event.error&&event.error.message?event.error.message:'Unknown map rendering/network error';setMapStatus('Map service error: '+message+'. Check whether the CARTO basemap or map tiles are blocked.');});
+  }catch(error){setMapStatus('Map could not be initialized: '+error.message);}
+}
+document.getElementById('showCDC').addEventListener('change',updateCDCVisibility);
+document.getElementById('cdcMetric').addEventListener('change',updateCDCMap);
+document.getElementById('cdcPeriod').addEventListener('change',updateCDCMap);
+function showTab(tab){document.querySelectorAll('.section').forEach(el=>el.classList.toggle('active',el.id===tab));document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===tab));if(tab==='explore'&&map)setTimeout(()=>map.resize(),40);}
 document.querySelectorAll('[data-tab]').forEach(button=>button.addEventListener('click',()=>showTab(button.dataset.tab)));
 document.getElementById('incidentForm').addEventListener('submit',event=>{event.preventDefault();document.getElementById('formResponse').textContent='Preview only. Nothing was saved or transmitted.';});
-Chart.defaults.color='#b9cadd';Chart.defaults.borderColor='#345067';
-cdcChartInstance=new Chart(document.getElementById('cdcChart'),{type:'line',data:{labels:[],datasets:[{label:'CDC firearm deaths',data:[],borderColor:'#65cce5',backgroundColor:'#65cce533',fill:true,tension:.3,spanGaps:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{boxWidth:12}}},scales:{y:{beginAtZero:true}}}});
+if(typeof Chart!=='undefined'){
+  Chart.defaults.color='#b9cadd';Chart.defaults.borderColor='#345067';
+  cdcChartInstance=new Chart(document.getElementById('cdcChart'),{type:'line',data:{labels:[],datasets:[{label:'CDC firearm deaths',data:[],borderColor:'#65cce5',backgroundColor:'#65cce533',fill:true,tension:.3,spanGaps:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{boxWidth:12}}},scales:{y:{beginAtZero:true}}}});
+}else{
+  document.getElementById('cdcChart').parentElement.innerHTML='<p class="muted">Chart.js could not load. The CDC data table remains available below.</p>';
+}
 </script>
 </body></html>
