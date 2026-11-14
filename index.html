@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nashville Firearm Impact Explorer</title>
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<style>
+:root{--bg:#2f3f51;--panel:#032242;--border:#415f7a;--text:#eaf2fb;--muted:#a4b9cc;--red:#fa565b;--gold:#ffbf47;--blue:#65cce5}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,Arial,sans-serif}header{padding:22px 25px;background:linear-gradient(100deg,#091b2d,#183550);border-bottom:1px solid var(--border)}h1{font:700 clamp(25px,3vw,39px) Georgia,serif;margin:0}header p{color:var(--muted);margin:6px 0 0}.demo{background:#6b3c19;color:#fff0d4;padding:10px 24px;font-weight:650;font-size:13px}.tabs{display:flex;gap:7px;flex-wrap:wrap;padding:12px 22px;background:#0c1d30}.tabs button,.action,select,input,textarea{font:inherit}.tabs button{color:#d5e4f0;background:transparent;border:1px solid transparent;padding:10px 14px;border-radius:7px;cursor:pointer}.tabs button.active,.tabs button:hover{background:#1a354e;border-color:#45627c}.wrap{padding:18px;max-width:1700px;margin:auto}.grid{display:grid;grid-template-columns:minmax(245px,1fr) minmax(380px,2.5fr) minmax(245px,1.1fr);gap:14px}.panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:17px;min-width:0}.panel h2{font-size:18px;margin:0 0 13px}.metric{font-size:38px;font-weight:800;color:var(--red)}.muted{color:var(--muted);font-size:13px}.split{display:flex;gap:15px;justify-content:space-between;border-top:1px solid var(--border);margin-top:14px;padding-top:14px}.split strong{font-size:24px}.split span{display:block;color:var(--muted);font-size:12px}.cdc{margin-top:14px}.cdc .number{font-size:25px;font-weight:750;color:var(--blue)}.cdc-line{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--border)}.cdc-line:last-child{border:0}.outcomeFilters{margin-bottom:12px;padding:12px 15px}.outcomeFilters h2{margin:0 0 7px;font-size:16px}.outcomeOptions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.outcomeOptions label{display:flex;align-items:center;gap:7px;margin:0;font-size:13px;color:var(--muted);font-weight:500}.outcomeOptions input{width:auto;margin:0;accent-color:var(--red)}.outcomeStatus{font-size:12px;color:var(--muted);margin:7px 0 0}.layerPanel{margin-bottom:12px;padding:12px 15px}.layerPanel h2{margin:0 0 8px;font-size:16px}.layerControls{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap}.layerControls label{display:flex;align-items:center;gap:7px;margin:0;font-size:13px;font-weight:500}.layerControls .layerToggle{color:var(--text)}.layerControls input{width:auto;margin:0;accent-color:var(--blue)}.layerControls select{width:auto;min-width:155px;margin:0;padding:7px 9px;font-size:13px}.layerControls .muted{font-size:12px}.layerHelp{flex-basis:100%;margin:0}.mapPanel{padding:0;overflow:hidden;position:relative;min-height:530px}#map{height:530px;background:#142c40}.mapnote{position:absolute;bottom:9px;left:10px;right:10px;z-index:2;background:#0b2034e8;padding:8px;border-radius:6px;font-size:12px}.redbtn{background:#c8323e;color:white;border:0;padding:17px;border-radius:10px;font-weight:750;cursor:pointer;width:100%;font-size:16px}.right .panel{margin-top:14px}.right .panel:first-child{margin-top:0}.report{padding:11px 0;border-bottom:1px solid var(--border)}.report strong{display:block}.report small{color:var(--muted)}.bottom{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;margin-top:14px}.chartBox{height:245px}.section{display:none}.section.active{display:block}.full{max-width:1000px;margin:0 auto}.note{background:#19344b;border-left:4px solid var(--blue);padding:12px;margin:12px 0;border-radius:5px}table{border-collapse:collapse;width:100%;margin:12px 0}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--border)}input,select,textarea{width:100%;padding:10px;margin:5px 0 13px;background:#07192a;border:1px solid #52697e;color:white;border-radius:6px}label{display:block;font-weight:600}textarea{min-height:90px}.action{padding:12px 16px;background:#d43e4b;border:0;color:white;border-radius:8px;cursor:pointer}.source a{color:#7cddf0}.foot{margin:24px 0;color:var(--muted);font-size:12px}.maplibregl-popup-content{color:#162231} @media(max-width:1100px){.grid{grid-template-columns:1fr 2fr}.right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px}.right .panel{margin-top:0}.bottom{grid-template-columns:1fr 1fr}}@media(max-width:680px){.grid,.bottom,.right{display:block}.panel,.right .panel{margin:0 0 13px}.mapPanel{margin-bottom:13px}#map{height:490px}}
+</style>
+</head>
+<body>
+<header><h1>Nashville Firearm Impact Explorer</h1><p>Public-health data exploration • Davidson County, Tennessee</p></header>
+<div class="demo">DATA STATUS — The only populated dataset in this version is the official CDC county-level CSV. No incident-level records, locations, demographics, news reports, or community submissions are currently connected. No illustrative incident data are displayed.</div>
+<nav class="tabs" aria-label="Sections">
+  <button class="active" data-tab="explore">◈ Explore Map</button>
+  <button data-tab="statistics">▥ Statistics</button>
+  <button data-tab="cdc">◉ CDC Data</button>
+  <button data-tab="reports">▤ Incident Records</button>
+  <button data-tab="submit">＋ Submit a Report</button>
+  <button data-tab="about">ⓘ Methodology</button>
+</nav>
+<main class="wrap">
+  <section id="explore" class="section active">
+    <div class="grid">
+      <div>
+        <div class="panel">
+          <h2>Incident-level data</h2>
+          <div class="metric">—</div>
+          <p class="muted">No verified incident-level dataset is connected. Incident totals, fatal/nonfatal breakdowns, and individual locations are therefore not shown.</p>
+        </div>
+        <div class="panel cdc">
+          <h2>CDC County Data</h2>
+          <p class="muted">Official county-level mortality statistics loaded from <code>Data/CDC_DATA.csv</code>.</p>
+          <p class="muted" id="cdcLoadStatus" role="status">CDC data are loading…</p>
+        </div>
+      </div>
+      <div>
+        <div class="panel outcomeFilters" aria-label="Incident outcome filters">
+          <h2>Incident outcome</h2>
+          <div class="outcomeOptions">
+            <label><input type="checkbox" disabled> <span>🔴 Fatal</span></label>
+            <label><input type="checkbox" disabled> <span>🟡 Nonfatal</span></label>
+            <label><input type="checkbox" disabled> <span>⚪ Pending verification</span></label>
+          </div>
+          <p class="outcomeStatus">These filters are outside the map and will become available when verified incident-level records are connected. No incident points are currently displayed.</p>
+        </div>
+        <div class="panel layerPanel" aria-label="Map layer controls">
+          <h2>Map layers</h2>
+          <div class="layerControls">
+            <label class="layerToggle"><input type="checkbox" id="showCDC"> <span>🟦 CDC County Statistics</span></label>
+            <label for="cdcMetric" class="muted">CDC measure</label>
+            <select id="cdcMetric">
+              <option value="FA_Deaths">Firearm deaths</option>
+              <option value="FA_Homicide">Firearm homicides</option>
+              <option value="FA_Suicide">Firearm suicides</option>
+            </select>
+            <label for="cdcPeriod" class="muted">Reporting period</label>
+            <select id="cdcPeriod">
+              <option value="2024" selected>2024 annual</option><option value="2023">2023 annual</option>
+              <option value="2022">2022 annual</option><option value="2021">2021 annual</option>
+              <option value="2020">2020 annual</option><option value="2019">2019 annual</option>
+              <option value="TTM">Latest trailing 12 months</option>
+            </select>
+            <p class="muted layerHelp">Turn on the county layer, then click Davidson County to inspect the selected CDC measure.</p>
+          </div>
+        </div>
+        <div class="panel mapPanel">
+          <div id="map" aria-label="Map of Davidson County, Tennessee"></div>
+          <div class="mapnote">This map displays a county boundary only. The CDC dataset contains county-level statistics, not individual shooting locations.</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="panel">
+          <h2>Incident data status</h2>
+          <p class="muted">No incident records have been imported or verified for this prototype. The incident map and incident statistics will remain empty until a real, documented dataset is supplied.</p>
+        </div>
+        <div class="panel">
+          <h2>Data limitations</h2>
+          <p class="muted">CDC county mortality figures cannot identify the location of individual events, receiving hospitals, nonfatal outcomes, or the characteristics of individual patients.</p>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="panel"><h2>CDC Firearm Deaths by Year</h2><div class="chartBox"><canvas id="cdcChart"></canvas></div><p class="muted">Annual Davidson County counts from the supplied CDC CSV. Suppressed or unavailable values are not converted to zero.</p></div>
+      <div class="panel"><h2>Incident trends</h2><p class="muted">Not displayed. No verified incident-level dataset is connected.</p></div>
+      <div class="panel"><h2>Demographic breakdown</h2><p class="muted">Not displayed. No individual-level demographic dataset is connected.</p></div>
+    </div>
+  </section>
+
+  <section id="statistics" class="section">
+    <div class="full panel">
+      <h2>Statistical Analysis</h2>
+      <p>Only the CDC county-level mortality data supplied in <code>Data/CDC_DATA.csv</code> are populated in this version.</p>
+      <div class="note">Incident counts, fatal/nonfatal comparisons, race and ethnicity breakdowns, hospital outcomes, and case-fatality calculations are intentionally omitted because no verified local dataset supporting those measures is connected.</div>
+      <h2>Davidson County CDC figures</h2>
+      <p class="muted">The table below is populated directly from the CSV. Suppressed values remain as supplied by CDC.</p>
+      <div id="cdcTableStatus" class="muted">Waiting for CDC CSV…</div>
+      <div style="overflow-x:auto"><table id="cdcDataTable"><thead><tr><th>Measure</th><th>Period</th><th>Count</th><th>Rate per 100,000</th><th>Data as of</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+
+  <section id="cdc" class="section">
+    <div class="full panel">
+      <h2>CDC Public Health Data</h2>
+      <p>County-level mortality statistics are loaded from the downloaded <code>CDC_DATA.csv</code> file, based on the <a href="https://data.cdc.gov/Injury-Violence/Mapping-Injury-Overdose-and-Violence-County/psx4-wq38" target="_blank" rel="noopener" style="color:#7cddf0">CDC Mapping Injury, Overdose, and Violence — County dataset</a>. County boundaries are requested from the <a href="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer" target="_blank" rel="noopener" style="color:#7cddf0">U.S. Census Bureau TIGERweb</a>.</p>
+      <div class="note">This dataset provides county-level mortality statistics. It does not provide individual incident coordinates, hospital-level outcomes, or a complete count of nonfatal firearm injuries in Davidson County. CDC county totals are not combined with incident reports.</div>
+      <h2>Measures available in the map</h2>
+      <ul><li>Firearm deaths (FA_Deaths)</li><li>Firearm homicides (FA_Homicide)</li><li>Firearm suicides (FA_Suicide)</li></ul>
+      <p>Choose an annual period or the latest trailing-12-month period in the map controls. The selected row's reporting dates and data-as-of date are shown in the county popup when provided by the CSV.</p>
+    </div>
+  </section>
+
+  <section id="reports" class="section">
+    <div class="full panel"><h2>Incident Records</h2><p>No incident records are currently connected to this dashboard.</p><div class="note">This section will remain empty until documented records are collected, sourced, checked for duplicates, and reviewed. No example records or fabricated report cards are included.</div></div>
+  </section>
+
+  <section id="submit" class="section">
+    <div class="full panel"><h2>Submit an Incident — Form Preview</h2>
+      <div class="note">This is a nonfunctional interface preview. It does not transmit, store, or submit information. A secure backend, privacy review, moderation process, and data-retention policy must be implemented before public submissions are enabled. Do not enter real personal or sensitive information here.</div>
+      <form id="incidentForm"><label>Incident date<input type="date" required></label><label>Approximate area / neighborhood<input placeholder="e.g., North Nashville" required maxlength="100"></label><label>Outcome<select required><option value="">Select an outcome</option><option>Fatal</option><option>Nonfatal</option><option>Unknown</option></select></label><label>Source article URL (optional)<input type="url" placeholder="https://example.com/article"></label><label>Brief description<textarea maxlength="600" placeholder="Use a general, non-identifying description"></textarea></label><button class="action" type="submit">Preview Form (does not submit)</button><p id="formResponse" role="status" class="muted"></p></form>
+    </div>
+  </section>
+
+  <section id="about" class="section"><div class="full panel source"><h2>Methodology and Ethics</h2>
+    <p><strong>Currently connected source:</strong> CDC county-level mortality CSV supplied with this project. Davidson County is identified by GEOID 47037.</p>
+    <p><strong>Geographic boundary:</strong> U.S. Census Bureau TIGERweb county boundary service.</p>
+    <p><strong>Incident-level data:</strong> No incident-level source is currently connected. No incident locations, fatal/nonfatal counts, demographic summaries, or example news reports are invented or displayed.</p>
+    <p><strong>Interpretation:</strong> County mortality statistics cannot be interpreted as hospital-level outcomes or a complete record of nonfatal injuries. Suppressed CDC values are preserved rather than converted to zero.</p>
+    <p><strong>Reference resources:</strong> <a href="https://data.cdc.gov/Injury-Violence/Mapping-Injury-Overdose-and-Violence-County/psx4-wq38" target="_blank" rel="noopener">CDC county dataset</a> · <a href="https://wonder.cdc.gov/" target="_blank" rel="noopener">CDC WONDER</a> · <a href="https://wisqars.cdc.gov/" target="_blank" rel="noopener">CDC WISQARS</a> · <a href="https://maplibre.org/maplibre-gl-js/docs/" target="_blank" rel="noopener">MapLibre GL JS</a> · <a href="https://www.chartjs.org/docs/latest/" target="_blank" rel="noopener">Chart.js</a>.</p>
+  </div></section>
+  <p class="foot">The CDC county CSV is loaded locally from <code>Data/CDC_DATA.csv</code>. Requires internet for the map background, Census county boundary, and chart libraries. No database or live incident feed is connected.</p>
+</main>
+<script>
+// This application intentionally contains no fabricated incident records or incident-level charts.
+// The only populated statistics below come from the supplied CDC county CSV.
+const CDC_CSV_PATH='Data/CDC_DATA.csv';
+const DAVIDSON_GEOID='47037';
+const CENSUS_DAVIDSON_URL="https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query?where=GEOID%3D%2747037%27&outFields=GEOID%2CNAME&returnGeometry=true&outSR=4326&f=geojson";
+let cdcRows=[];
+let cdcCountyFeature=null;
+let cdcChartInstance=null;
+
+const map=new maplibregl.Map({container:'map',style:'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',center:[-86.782,36.168],zoom:9.5});
+map.addControl(new maplibregl.NavigationControl(),'bottom-right');
+
+function setCDCStatus(message){document.getElementById('cdcLoadStatus').textContent=message;}
+function findCDCRecord(intent,period){
+  return cdcRows.find(row=>String(row.GEOID).padStart(5,'0')===DAVIDSON_GEOID && row.Intent===intent && String(row.Period)===String(period));
+}
+function formatCDCValue(value){
+  if(value===undefined || value===null || String(value).trim()==='' || String(value)==='-999') return 'Not available';
+  return String(value);
+}
+function getCDCFeatureProperties(){return findCDCRecord(document.getElementById('cdcMetric').value,document.getElementById('cdcPeriod').value);}
+function refreshCDCFeature(){
+  if(!map.getSource('cdc-county')) return;
+  const record=getCDCFeatureProperties();
+  const features=cdcCountyFeature?[{type:'Feature',geometry:cdcCountyFeature.geometry,properties:{
+    GEOID:DAVIDSON_GEOID,NAME:'Davidson County',Intent:record?.Intent||'',Period:record?.Period||'',Count:record?.Count||'',
+    Rate:record?.Rate||'',Rate_M:record?.Rate_M||'',Rate_M_CI:record?.Rate_M_CI||'',Data_As_Of:record?.Data_As_Of||'',TTM_Date_Range:record?.TTM_Date_Range||''
+  }}]:[];
+  map.getSource('cdc-county').setData({type:'FeatureCollection',features});
+}
+function showCDCPopup(feature,lngLat){
+  const p=feature.properties;
+  const periodLabel=p.Period==='TTM'?'Trailing 12 months ('+formatCDCValue(p.TTM_Date_Range)+')':'Calendar year '+formatCDCValue(p.Period);
+  const metricNames={FA_Deaths:'Firearm deaths',FA_Homicide:'Firearm homicides',FA_Suicide:'Firearm suicides'};
+  const html='<strong>Davidson County, Tennessee</strong><br><b>'+metricNames[p.Intent]+'</b><br>Period: '+periodLabel+
+    '<br>Count: '+formatCDCValue(p.Count)+'<br>Rate per 100,000: '+formatCDCValue(p.Rate)+
+    (p.Rate_M_CI&&p.Rate_M_CI!=='-999'?'<br>Rate confidence interval: '+formatCDCValue(p.Rate_M_CI):'')+
+    '<br>CDC data as of: '+formatCDCValue(p.Data_As_Of)+'<hr><small>Source: CDC county dataset. County-level statistic, not an individual incident location.</small>';
+  new maplibregl.Popup().setLngLat(lngLat).setHTML(html).addTo(map);
+}
+function updateCDCLayerVisibility(){
+  const visible=document.getElementById('showCDC').checked;
+  ['cdc-county-fill','cdc-county-outline'].forEach(id=>{if(map.getLayer(id))map.setLayoutProperty(id,'visibility',visible?'visible':'none');});
+}
+function numericOrNull(value){return /^\\d+(\\.\\d+)?$/.test(String(value??'').trim())?Number(value):null;}
+function updateCDCTrendChart(){
+  if(!cdcChartInstance)return;
+  const years=['2019','2020','2021','2022','2023','2024'];
+  cdcChartInstance.data.labels=years;
+  cdcChartInstance.data.datasets[0].data=years.map(year=>{const row=findCDCRecord('FA_Deaths',year);return row?numericOrNull(row.Count):null;});
+  cdcChartInstance.update();
+}
+function populateCDCTable(){
+  const tbody=document.querySelector('#cdcDataTable tbody');
+  const measures=[['FA_Deaths','Firearm deaths'],['FA_Homicide','Firearm homicides'],['FA_Suicide','Firearm suicides']];
+  const periods=['2019','2020','2021','2022','2023','2024','TTM'];
+  const rows=[];
+  measures.forEach(([intent,label])=>periods.forEach(period=>{const r=findCDCRecord(intent,period);if(r)rows.push({label,period,count:formatCDCValue(r.Count),rate:formatCDCValue(r.Rate),asof:formatCDCValue(r.Data_As_Of)});}));
+  tbody.innerHTML=rows.map(r=>'<tr><td>'+r.label+'</td><td>'+r.period+'</td><td>'+r.count+'</td><td>'+r.rate+'</td><td>'+r.asof+'</td></tr>').join('');
+  document.getElementById('cdcTableStatus').textContent=rows.length?rows.length+' Davidson County records loaded from the supplied CSV.':'No matching Davidson County records found for the selected measures and periods.';
+}
+function loadCDCFile(){
+  Papa.parse(CDC_CSV_PATH,{download:true,header:true,skipEmptyLines:true,complete:results=>{
+    cdcRows=results.data;
+    const hasDavidson=cdcRows.some(row=>String(row.GEOID).padStart(5,'0')===DAVIDSON_GEOID);
+    if(!hasDavidson){setCDCStatus('CSV loaded, but no Davidson County (GEOID 47037) records were found.');return;}
+    setCDCStatus('CDC county data loaded from '+CDC_CSV_PATH+'. Toggle the county layer on to inspect it.');
+    refreshCDCFeature();updateCDCTrendChart();populateCDCTable();
+  },error:function(error){setCDCStatus('Could not load '+CDC_CSV_PATH+'. Confirm the CSV is in the Data folder beside index.html. '+error.message);document.getElementById('cdcTableStatus').textContent='CDC CSV could not be loaded.';}});
+}
+function loadDavidsonBoundary(){
+  fetch(CENSUS_DAVIDSON_URL).then(response=>{if(!response.ok)throw new Error('Census boundary request returned HTTP '+response.status);return response.json();})
+    .then(geojson=>{
+      if(!geojson.features||!geojson.features.length)throw new Error('Davidson County boundary was not returned.');
+      cdcCountyFeature=geojson.features[0];
+      map.addSource('cdc-county',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+      map.addLayer({id:'cdc-county-fill',type:'fill',source:'cdc-county',paint:{'fill-color':'#65cce5','fill-opacity':0.16}});
+      map.addLayer({id:'cdc-county-outline',type:'line',source:'cdc-county',paint:{'line-color':'#65cce5','line-width':2.5,'line-dasharray':[2,1]}});
+      refreshCDCFeature();updateCDCLayerVisibility();
+      map.on('click','cdc-county-fill',event=>{const feature=event.features&&event.features[0];if(feature)showCDCPopup(feature,event.lngLat);});
+      map.on('mouseenter','cdc-county-fill',()=>map.getCanvas().style.cursor='pointer');
+      map.on('mouseleave','cdc-county-fill',()=>map.getCanvas().style.cursor='');
+    }).catch(error=>setCDCStatus('CDC boundary could not be loaded: '+error.message));
+}
+map.on('load',()=>{loadCDCFile();loadDavidsonBoundary();});
+document.getElementById('showCDC').addEventListener('change',updateCDCLayerVisibility);
+document.getElementById('cdcMetric').addEventListener('change',refreshCDCFeature);
+document.getElementById('cdcPeriod').addEventListener('change',refreshCDCFeature);
+function showTab(tab){document.querySelectorAll('.section').forEach(el=>el.classList.toggle('active',el.id===tab));document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===tab));if(tab==='explore')setTimeout(()=>map.resize(),40);}
+document.querySelectorAll('[data-tab]').forEach(button=>button.addEventListener('click',()=>showTab(button.dataset.tab)));
+document.getElementById('incidentForm').addEventListener('submit',event=>{event.preventDefault();document.getElementById('formResponse').textContent='Preview only. Nothing was saved or transmitted.';});
+Chart.defaults.color='#b9cadd';Chart.defaults.borderColor='#345067';
+cdcChartInstance=new Chart(document.getElementById('cdcChart'),{type:'line',data:{labels:[],datasets:[{label:'CDC firearm deaths',data:[],borderColor:'#65cce5',backgroundColor:'#65cce533',fill:true,tension:.3,spanGaps:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{boxWidth:12}}},scales:{y:{beginAtZero:true}}}});
+</script>
+</body></html>
